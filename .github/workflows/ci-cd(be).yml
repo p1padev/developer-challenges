@@ -6,9 +6,11 @@ on:
     paths:
       - 'apps/dynapredict-api/**'
   pull_request:
-    branches: [main]
+    branches: ['**']
     paths:
       - 'apps/dynapredict-api/**'
+  pull_request_review:
+    types: [submitted]
 
 jobs:
   ci:
@@ -16,7 +18,10 @@ jobs:
 
   cd:
     needs: ci
-    if: github.event_name == 'push' && github.ref == 'refs/heads/deploy_dockerhub' || github.event_name == 'pull_request' && github.base_ref == 'main'
+    if: |
+      github.event_name == 'pull_request_review' && 
+      github.event.review.state == 'approved' && 
+      (github.base_ref == 'main' || github.base_ref == 'deploy_dockerhub')
     uses: ./.github/workflows/cd(be).yml
     secrets:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
