@@ -1,22 +1,28 @@
 name: CI/CD (BE)
 
 on:
-  push:
-    branches: ['**']
-    paths:
-      - 'apps/dynapredict-api/**'
   pull_request:
-    branches: [main]
+    types: [opened, reopened, closed]
+    branches: [main, deploy_dockerhub]
     paths:
       - 'apps/dynapredict-api/**'
 
 jobs:
   ci:
+    if: >
+      github.event.action == 'opened' || 
+      github.event.action == 'reopened'
     uses: ./.github/workflows/ci(be).yml
 
   cd:
     needs: ci
-    if: github.event_name == 'push' && github.ref == 'refs/heads/deploy_dockerhub' || github.event_name == 'pull_request' && github.base_ref == 'main'
+    if: >
+      github.event.action == 'closed' && 
+      github.event.pull_request.merged == true && 
+      (
+        github.event.pull_request.base.ref == 'main' || 
+        github.event.pull_request.base.ref == 'deploy_dockerhub'
+      )
     uses: ./.github/workflows/cd(be).yml
     secrets:
       DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
