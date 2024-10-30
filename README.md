@@ -1,48 +1,135 @@
-# Dynamox Developer Challenges
+## 🚀 Welcome to my Solution of the Full-Stack Challenge at Dynamox
 
-## About Dynamox
+> Since the original README was written in English, I'll continue in English to effectively document my efforts throughout this project.
 
-[Dynamox](https://dynamox.net/) is a high-tech firm specializing in vibration analysis and industrial asset condition monitoring. Our expert team develops comprehensive hardware and software solutions, encompassing firmware, mobile applications (Android and iOS), and full-stack cloud native applications. 
+---
 
-With our proficiency in signal processing for vibration and acoustics, we deliver advanced and precise monitoring systems. We are committed to optimizing operational efficiency and facilitating proactive maintenance through our innovative technology and integrated solutions.
+### 📋 Summary
 
-## Positions
+Nx was used to set up this repository.
 
-We are actively seeking a versatile Full Stack Developer with a strong emphasis on front-end development to join our team. Your primary responsibility will be enhancing our Corporate Channels—our Website, Blog, Support Portal, Salesforce integration, and our asset condition monitoring platform, [DynaPredict](https://dynamox.net/en/dynapredict). You will become an essential part of one of our dedicated development teams, where your front-end expertise will drive our projects to new heights.
+- **API**: [https://dynapredict-api.onrender.com](https://dynapredict-api.onrender.com)
+  - Built with **TypeScript**, **Nest.js**, **Prisma**, **PostgreSQL**, **Jest**, **Passport**, and helper libraries (JWT auth).
+  - **CI/CD** implemented using **GitHub Actions** and **Docker**.
 
-However, while your main focus will be on front-end tasks, we also expect you to navigate backend development as and when necessary. You won't be alone in this; you will have the full support of our team to guide you through. This opportunity to learn and grow across different aspects of development will foster a dynamic and engaging work environment.
+---
 
-We value flexibility and collaboration, hence we provide opportunities for you to lend your skills to other teams when required. Join us on this exciting journey as we revolutionize our digital platforms. Currently we are particularly interested in individuals who can identify with one of the following role descriptions:
+## Getting Started
 
-### Junior Software Developer
+> Make sure you have Git, Node.js and NPM available.
+> Follow these steps to set up the project locally:
+>
+> 1. **Clone the Repository**
+>
+>    ```bash
+>    git clone https://github.com/your-username/dynapredict.git
+>    cd developer-challenges
+>    git checkout joao-ferraz
+>    ```
+>
+> 2. **Install Dependencies**
+>
+>    ```bash
+>    npm install
+>    ```
+>
+> 3. **Create an `.env` file in /apps/dynapredict-api/ and also on /apps/dynapredict-api/prisma**
+>
+>    In the root directory of the api project, create a `.env` file and add the following environment variables:
+>
+>    ```env
+>    JWT_SECRET=your_jwt_secret
+>    ```
+>
+>    In the prisma directory of the project, create another `.env` file and add a database_url for prisma to use:
+>
+>    ```env
+>    DATABASE_URL=your_database_url
+>    ```
+>
+> 4. **Setup Prisma and Run Development Commands**
+>
+>    Follow these steps to set up Prisma and prepare your local development environment:
+>
+>    1. **Generate Prisma Client**
+>
+>       ```bash
+>       npx prisma generate
+>       ```
+>
+>       This command generates the Prisma Client based on your schema, allowing you to interact with your database.
+>
+>    2. **Run Database Migrations**
+>
+>       ```bash
+>       npx prisma migrate dev
+>       ```
+>
+>       This will apply the database migrations and set up your development database. The `--name init` flag names the migration for reference.
+>
+> ### Running the API Application
+>
+> Use the following commands to interact with the API:
+>
+> - **Run the API Server Locally**
+>
+>   ```bash
+>   nx serve dynapredict-api
+>   ```
+>
+> - **Run Unit Tests for the Application**
+>
+>   ```bash
+>   nx test dynapredict-api
+>   ```
+>
+> - **Run End-to-End (E2E) Tests for the Application**
+>
+>   **Attention: your server needs to be running on localhost:3000 for this to work**
+>
+>   ```bash
+>   nx run dynapredict-api-e2e:e2e
+>   ```
+>
+> ### Additional Commands
+>
+> As the project evolves, additional commands may be added to facilitate development and deployment.
 
-With limited experience, assists in coding, testing, and stabilizing systems under supervision. Communicates with immediate team members and solves straightforward problems with guidance. Should display a willingness to learn and grow professionally. This is an individual contributor role.
+<hr>
 
-### Mid-level Software Developer
+## Comments
 
-With a certain level of proven experience, contributes to software development, solves moderate problems, and starts handling ambiguous situations with minimal guidance. Communicates with the broader team and engages in code reviews and documentation. This role also includes mentorship of junior engineers and a commitment to continuous learning. This is an individual contributor role.
+This will act as a logger for my progress at the project. Not everything written here is necessarily a linear message.
 
-### Senior-level Software Developer
+> I am currently writing this first version of documentation at _11:00 AM_ on Thursday, Oct 24. I'll make a commit right after I finish here to save it as the timestamp marking the beginning of this journey.
+>
+> My chain of thoughts can be read [here](/thoughts.md).
 
-With vast experience, enhances software development, leading complex system development and ambiguous situation handling. Tackles intricate problems and mentors junior and mid-level engineers. Champions coding standards, project strategy, and technology adoption. Communicates across teams, influencing technical and non-technical stakeholders. This individual contributor role blends technical expertise with leadership, focusing on innovation, mentorship, and strategic contributions to the development process.
+> Hey, I'm back. It's _5:30 PM_ on Monday, Oct 28, and I have just completed everything I aimed to achieve for my backend. The features include:
 
-## Challenges
+> **Unit Tests** > **CI/CD**:
+> CI for linting, typechecking and unit testing;
+> CD workflow that pushes a **Docker image** to Docker Hub and also interacts with the **Render Webhook** to trigger new deployments.
+>
+> While the backend took more time than anticipated, I'm really satisfied with the outcome. I successfully implemented all the requirements and went beyond.
+>
+> I will now start building the frontend using the template suggested in the Markdown.
 
-- [ ] [01 - Dynamox Full-Stack Developer Challenge](./full-stack-challenge.md)
-- [ ] [02 - Dynamox Front-end Developer Challenge](./front-end-challenge.md)
+### 🛠️ Tech Stack
 
-## Ready to Begin the Challenges?
-
-1. [ ] Fork this repository to your own Github account.
-1. [ ] Create a new branch using your first name and last name. For example: `caroline-oliveira`.
-1. [ ] After completing the challenge, create a pull request to this repository (https://github.com/dynamox-s-a/js-ts-full-stack-test), aimed at the main branch.
-1. [ ] We will receive a notification about your pull request, review your solution, and get in touch with you.
-
-## Frequently Asked Questions
-
-1. Is it necessary to fork the project?
-  **Yes, this allows us to see how much time you spent on the challenge.**
-
-</br>
-
-**Good luck! We look forward to reviewing your submission.** 🚀
+- **Frontend**:
+  - **TypeScript**
+  - **Next.js**
+  - **Redux**
+  - **Material-UI (MUI)**
+- **Backend**:
+  - **Node.js**
+  - **TypeScript**
+  - **Nest.js**
+  - **Prisma**
+  - **PostgreSQL**
+- **Tools & Utilities**:
+  - **Nx** for monorepo management
+  - **Jest** for testing
+  - **Docker** for containerization
+  - **GitHub Actions** for CI/CD pipelines
